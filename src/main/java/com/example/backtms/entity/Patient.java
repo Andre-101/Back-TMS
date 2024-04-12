@@ -28,7 +28,7 @@ public class Patient {
     @JoinColumn(name = "doctor")
     private Doctor doctor;
 
-    @OneToMany(mappedBy = "Patients")
+    @OneToMany(mappedBy = "patient")
     private List<Report> reports;
 
     public Patient() {}

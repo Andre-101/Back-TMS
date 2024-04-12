@@ -31,7 +31,7 @@ public class Report {
     @JoinColumn(name = "doctor")
     private Doctor doctor;
 
-    @OneToMany(mappedBy = "reports")
+    @OneToMany(mappedBy = "report")
     private List<Measurement> measurements;
 
     public Report() {}

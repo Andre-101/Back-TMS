@@ -22,6 +22,5 @@ public class Measurement {
     @JoinColumn(name = "report")
     private Report report;
 
-    public Measurement() {
-    }
+    public Measurement() {}
 }
