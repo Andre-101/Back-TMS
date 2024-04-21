@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class APController {
 
     @Autowired
-    AdminRepository repository;
+    AdminRepository adminRepository;
 
     @PostMapping("doctor/create")
     public ResponseEntity<?> create(@RequestBody Doctor doctor) {
-        AdminRepository.save(doctor);
+        adminRepository.save(admin);
         return ResponseEntity.status(200).body(new GenericMessage("Usuario almacenado exitosamente"));
     }
 
