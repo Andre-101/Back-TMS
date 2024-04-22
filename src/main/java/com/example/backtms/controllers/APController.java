@@ -17,7 +17,7 @@ public class APController {
 
     @PostMapping("doctor/create")
     public ResponseEntity<?> create(@RequestBody Doctor doctor) {
-        adminRepository.save(admin);
+        adminRepository.save();
         return ResponseEntity.status(200).body(new GenericMessage("Usuario almacenado exitosamente"));
     }
 
