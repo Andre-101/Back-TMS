@@ -14,6 +14,7 @@ public class Doctor {
 
     private String username;
     private String password;
+    private String email;
 
     @ManyToOne
     @JoinColumn(name = "adminID")
@@ -22,11 +23,35 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor")
     private List<Patient> patients;
 
-    public Doctor() {}
+    public long getId() {
+        return id;
+    }
 
-    public Doctor(String username, String password, Admin admin) {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
-        this.admin = admin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
