@@ -8,11 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface DoctorRepository extends CrudRepository<Doctor, Long> {
-    @Query("SELECT u FROM Doctor u WHERE u.email = :email")
-    public Optional<Doctor> searchByEmail(@Param("email") String email);
+public interface AdminRepository extends CrudRepository<Admin, Long> {
+    @Query("SELECT u FROM Admin u WHERE u.email = :email")
+    public Optional<Admin> searchByEmail(@Param("email") String email);
 
-    @Query("SELECT u FROM Doctor u WHERE u.email = :email AND u.password = :password")
+    @Query("SELECT u FROM Admin u WHERE u.email = :email AND u.password = :password")
     public Optional<Doctor> getDoctorByEmailAndPassword(
             @Param("email") String email,
             @Param("password") String password

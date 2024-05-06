@@ -1,10 +1,13 @@
 package com.example.backtms.controllers;
 
 
+import com.example.backtms.entity.Admin;
 import com.example.backtms.entity.Doctor;
+import com.example.backtms.repository.AdminRepository;
 import com.example.backtms.repository.DoctorRepository;
 import com.example.backtms.util.GenericMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +18,8 @@ public class APController {
 
     @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    AdminRepository adminRepository;
 
     @PostMapping("user/create")
     public ResponseEntity<?> create(@RequestBody Doctor doctor) {
@@ -22,18 +27,33 @@ public class APController {
         return ResponseEntity.status(200).body(new GenericMessage("Usuario almacenado exitosamente"));
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Doctor doctor) {
+    @PostMapping("user/createAdmin")
+    public ResponseEntity<?> create(@RequestBody Admin admin) {
+        adminRepository.save(admin);
+        return ResponseEntity.status(200).body(new GenericMessage("Admin almacenado exitosamente"));
+    }
 
-        String email = doctor.getEmail();
-        String password = doctor.getPassword();
+    @PostMapping("loginAdmin")
+    public ResponseEntity<?> login(@RequestBody Admin admin){
+        var result = doctorRepository.getAdminByEmailAndPassword(
+                admin.getEmail(),
+                admin.getPassword()
+        );
+        return result.isPresent() ?
+                ResponseEntity.status(200).body(result.get()) :
+                ResponseEntity.status(403).body(new GenericMessage("NO ERES UN ADMIN"));
+    }
 
-        // Comparando con las credenciales correctas
-        if ("Andy@hotmail.com".equals(email) && "1234".equals(password)) {
-            return ResponseEntity.ok(new GenericMessage("Inicio de sesión exitoso"));
-        } else {
-            return ResponseEntity.status(401).body(new GenericMessage("Credenciales incorrectas"));
-        }
+
+    @PostMapping("loginDoctor")
+    public ResponseEntity<?> login(@RequestBody Doctor doctor){
+        var result = doctorRepository.getDoctorByEmailAndPassword(
+                doctor.getEmail(),
+                doctor.getPassword()
+        );
+        return result.isPresent() ?
+                ResponseEntity.status(200).body(result.get()) :
+                ResponseEntity.status(403).body(new GenericMessage("NO ERES UN DOCTOR"));
     }
 
 
