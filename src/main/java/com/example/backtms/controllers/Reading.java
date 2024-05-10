@@ -1,10 +1,13 @@
-package com.example.backtms.entity;
+package com.example.backtms.controllers;
 
 public class Reading {
     private int t;
     private int x;
     //GETS y SETS
 
+
+    public Reading() {
+    }
 
     public Reading(int t, int x) {
         this.t = t;

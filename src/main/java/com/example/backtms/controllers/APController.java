@@ -3,13 +3,10 @@ package com.example.backtms.controllers;
 
 import com.example.backtms.entity.Admin;
 import com.example.backtms.entity.Doctor;
-import com.example.backtms.entity.Measurement;
-import com.example.backtms.entity.Test;
 import com.example.backtms.repository.AdminRepository;
 import com.example.backtms.repository.DoctorRepository;
 import com.example.backtms.util.GenericMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,6 +62,7 @@ public class APController {
         return ResponseEntity.status(200).body(users);
     }
 
+    //Endpoint para recibir la informacion del sensor
     @PostMapping("sensor")
     public ResponseEntity<?> sendData(@RequestBody Test test){
         var output = ResponseEntity.status(200).body(test);

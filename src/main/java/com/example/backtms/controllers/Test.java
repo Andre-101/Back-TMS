@@ -1,4 +1,4 @@
-package com.example.backtms.entity;
+package com.example.backtms.controllers;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,9 @@ public class Test {
     private ArrayList<Reading> readings;
     //GETS y SETS
 
+
+    public Test() {
+    }
 
     public Test(String type, int samples) {
         this.type = type;
