@@ -4,6 +4,7 @@ package com.example.backtms.controllers;
 import com.example.backtms.entity.Admin;
 import com.example.backtms.entity.Doctor;
 import com.example.backtms.entity.Measurement;
+import com.example.backtms.entity.Test;
 import com.example.backtms.repository.AdminRepository;
 import com.example.backtms.repository.DoctorRepository;
 import com.example.backtms.util.GenericMessage;
@@ -64,12 +65,10 @@ public class APController {
         return ResponseEntity.status(200).body(users);
     }
 
-    /*
-    @PostMapping("/measurement/add")
-    public ResponseEntity<?> addMeasurement(@RequestBody Measurement measurement) {
-        measurementRepository.save(measurement); //Crear measurement Repository
-        return ResponseEntity.status(200).body(new GenericMessage("Medición almacenada exitosamente"));
+    @PostMapping("sensor")
+    public ResponseEntity<?> sendData(@RequestBody Test test){
+        var output = ResponseEntity.status(200).body(test);
+        return output;
     }
-    */
 
 }
