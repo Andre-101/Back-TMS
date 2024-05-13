@@ -62,6 +62,43 @@ public class APController {
         return ResponseEntity.status(200).body(users);
     }
 
+    /* BUSQUEDA DE PACIENTES POR ID
+
+    @GetMapping("user/search/{id}") //user/search/10
+    public ResponseEntity<?> findById(@PathVariable("id") long id){
+        var user = userRepository.findById(id);
+        if(user.isPresent()){
+            return ResponseEntity.status(200).body(user.get());
+        }else{
+            return ResponseEntity.status(400).body(
+                    new GenericMessage("Usuario no encontrado")
+            );
+        }
+    }
+
+    //BUSQUEDA DE PACIENTES POR EMAIL
+    @GetMapping("user/searchByEmail/{email}") //user/searchByEmail/alfa@a.com
+    public ResponseEntity<?> searchByEmail(@PathVariable("email") String email){
+
+        var user = userRepository.searchByEmail(email);
+        if(user.isPresent()){
+            return ResponseEntity.status(200).body(user.get());
+        }else{
+            return ResponseEntity.status(400).body(new GenericMessage("Usuario no encontrado"));
+        }
+
+    }
+
+    //ELIMINACION DE PACIENTES POR ID
+    @DeleteMapping("user/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") long id){
+        userRepository.deleteById(id);
+        return ResponseEntity.status(200).body(
+                new GenericMessage("Usuario Eliminado")
+        );
+    }
+    */
+
     //Endpoint para recibir la informacion del sensor
     @PostMapping("sensor")
     public ResponseEntity<?> sendData(@RequestBody Test test){
