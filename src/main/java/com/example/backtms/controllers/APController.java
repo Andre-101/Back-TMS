@@ -55,18 +55,27 @@ public class APController {
                 ResponseEntity.status(403).body(new GenericMessage("NO ERES UN DOCTOR"));
     }
 
-
-    @GetMapping("user/list")
+    //Lista de doctores
+    @GetMapping("doctor/list")
     public ResponseEntity<?> list() {
-        var users = doctorRepository.findAll();
-        return ResponseEntity.status(200).body(users);
+        var doctors = doctorRepository.findAll();
+        return ResponseEntity.status(200).body(doctors);
     }
 
-    /* BUSQUEDA DE PACIENTES POR ID
+    //ELIMINACION DE Doctores POR ID
+    @DeleteMapping("doctor/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") long id){
+        doctorRepository.deleteById(id);
+        return ResponseEntity.status(200).body(
+                new GenericMessage("Usuario Eliminado")
+        );
+    }
 
-    @GetMapping("user/search/{id}") //user/search/10
+    /*
+    //BUSQUEDA DE PACIENTES POR ID
+    @GetMapping("doctor/search/{id}") //user/search/10
     public ResponseEntity<?> findById(@PathVariable("id") long id){
-        var user = userRepository.findById(id);
+        var user = doctorRepository.findById(id);
         if(user.isPresent()){
             return ResponseEntity.status(200).body(user.get());
         }else{
@@ -75,29 +84,20 @@ public class APController {
             );
         }
     }
+    */
 
     //BUSQUEDA DE PACIENTES POR EMAIL
-    @GetMapping("user/searchByEmail/{email}") //user/searchByEmail/alfa@a.com
+    @GetMapping("doctor/searchByEmail/{email}") //user/searchByEmail/alfa@a.com
     public ResponseEntity<?> searchByEmail(@PathVariable("email") String email){
-
-        var user = userRepository.searchByEmail(email);
-        if(user.isPresent()){
-            return ResponseEntity.status(200).body(user.get());
+        var doctor = doctorRepository.searchByEmail(email);
+        if(doctor.isPresent()){
+            return ResponseEntity.status(200).body(doctor.get());
         }else{
             return ResponseEntity.status(400).body(new GenericMessage("Usuario no encontrado"));
         }
 
     }
 
-    //ELIMINACION DE PACIENTES POR ID
-    @DeleteMapping("user/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") long id){
-        userRepository.deleteById(id);
-        return ResponseEntity.status(200).body(
-                new GenericMessage("Usuario Eliminado")
-        );
-    }
-    */
 
     //Endpoint para recibir la informacion del sensor
     @PostMapping("sensor")
