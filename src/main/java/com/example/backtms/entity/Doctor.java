@@ -31,6 +31,17 @@ public class Doctor {
         this.id = id;
     }
 
+
+    public Doctor(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public Doctor() {
+    }
+
+
     public String getUsername() {
         return username;
     }
@@ -53,5 +64,13 @@ public class Doctor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
     }
 }
