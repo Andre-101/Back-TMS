@@ -6,17 +6,17 @@ public class Test {
     private String type;
     private int samples;
     private ArrayList<Reading> readings;
-    //GETS y SETS
 
+    public Test(String type, int samples, ArrayList<Reading> readings) {
+        this.type = type;
+        this.samples = samples;
+        this.readings = readings;
+    }
 
     public Test() {
     }
 
-    public Test(String type, int samples) {
-        this.type = type;
-        this.samples = samples;
-    }
-
+    //GETS y SETS
     public String getType() {
         return type;
     }
@@ -31,5 +31,13 @@ public class Test {
 
     public void setSamples(int samples) {
         this.samples = samples;
+    }
+
+    public ArrayList<Reading> getReadings() {
+        return readings;
+    }
+
+    public void setReadings(ArrayList<Reading> readings) {
+        this.readings = readings;
     }
 }
