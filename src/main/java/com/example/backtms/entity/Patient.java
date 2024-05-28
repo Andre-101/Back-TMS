@@ -31,10 +31,43 @@ public class Patient {
 
     public Patient() {}
 
-    public Patient(String name, long age, String gender, Doctor doctor) {
+
+    public Patient(long id, String name, long age, String gender) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.doctor = doctor;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getAge() {
+        return age;
+    }
+
+    public void setAge(long age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

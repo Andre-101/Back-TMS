@@ -70,11 +70,55 @@ public class APController {
                 ResponseEntity.status(403).body(new GenericMessage("NO ERES UN DOCTOR"));
     }
 
-
-    @GetMapping("user/list")
+    //Lista de doctores
+    @GetMapping("doctor/list")
     public ResponseEntity<?> list() {
-        var users = doctorRepository.findAll();
-        return ResponseEntity.status(200).body(users);
+        var doctors = doctorRepository.findAll();
+        return ResponseEntity.status(200).body(doctors);
+    }
+
+    //ELIMINACION DE Doctores POR ID
+    @DeleteMapping("doctor/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") long id){
+        doctorRepository.deleteById(id);
+        return ResponseEntity.status(200).body(
+                new GenericMessage("Usuario Eliminado")
+        );
+    }
+
+    /*
+    //BUSQUEDA DE PACIENTES POR ID
+    @GetMapping("doctor/search/{id}") //user/search/10
+    public ResponseEntity<?> findById(@PathVariable("id") long id){
+        var user = doctorRepository.findById(id);
+        if(user.isPresent()){
+            return ResponseEntity.status(200).body(user.get());
+        }else{
+            return ResponseEntity.status(400).body(
+                    new GenericMessage("Usuario no encontrado")
+            );
+        }
+    }
+    */
+
+    //BUSQUEDA DE PACIENTES POR EMAIL
+    @GetMapping("doctor/searchByEmail/{email}") //user/searchByEmail/alfa@a.com
+    public ResponseEntity<?> searchByEmail(@PathVariable("email") String email){
+        var doctor = doctorRepository.searchByEmail(email);
+        if(doctor.isPresent()){
+            return ResponseEntity.status(200).body(doctor.get());
+        }else{
+            return ResponseEntity.status(400).body(new GenericMessage("Usuario no encontrado"));
+        }
+
+    }
+
+
+    //Endpoint para recibir la informacion del sensor
+    @PostMapping("sensor")
+    public ResponseEntity<?> sendData(@RequestBody Test test){
+        var output = ResponseEntity.status(200).body(test);
+        return output;
     }
 
     @GetMapping("admin/list")

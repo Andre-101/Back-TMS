@@ -18,6 +18,15 @@ public interface DoctorRepository extends CrudRepository<Doctor, Long> {
             @Param("password") String password
     );
 
+    @Query("SELECT u FROM Doctor u WHERE u.username = :username")
+    public Optional<Doctor> searchByUsername(@Param("username") String username);
+
+    @Query("SELECT u FROM Doctor u WHERE u.username = :username AND u.password = :password")
+    public Optional<Doctor> getDoctorByUsernameAndPassword(
+            @Param("username") String username,
+            @Param("password") String password
+    );
+
     @Query("SELECT u FROM Admin u WHERE u.email = :email AND u.password = :password")
     public Optional<Admin> getAdminByEmailAndPassword(
             @Param("email") String email,
